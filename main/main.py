@@ -3,7 +3,7 @@ import requests
 # Substitua 'YOUR_API_KEY' pela sua chave de API da TomTom
 api_key = 'jRJzo9EsGRhQol947cFzSrGNzIYPAsCH'
 
-caminhos = ["Pedro Alvares Cabral - Doca:",'-1.40932,-48.4489','-1.43663,-48.49174'], ["Duque de Caixias - Doca: ",'-1.40951,-48.46381','-1.44609,-48.48798']
+caminhos = ["Pedro Alvares Cabral - Doca:",'-1.40932,-48.4489','-1.43663,-48.49174'], ["Duque de Caixias - Doca: ",'-1.40951,-48.46381','-1.44609,-48.48798'], ["Pedro Miranda - Doca: ",'-1.40951,-48.46381','-1.44357,-48.48765']
 
 def medir_rota(rota,partida, destino):
 
