@@ -38,7 +38,10 @@ def medir_rota(rota,partida, destino):
     else:
         print('Erro ao fazer a solicitação:', response.status_code)
 
-for i in caminhos:
-    medir_rota(i[0],i[1],i[2])
+def verritas():
+    for i in caminhos:
+        medir_rota(i[0],i[1],i[2])
+
+verritas()
 
 #site das coordenadas: https://wego.here.com/discover/belem?map=-1.42841,-48.46095,15.74,omv
