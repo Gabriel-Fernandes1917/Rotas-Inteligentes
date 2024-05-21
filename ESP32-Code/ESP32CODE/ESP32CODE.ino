@@ -14,8 +14,8 @@
 #include <HTTPClient.h> // Biblioteca nativa do ESP32
 
 // Configurações da rede WiFi à se conectar
-const char* ssid = "Fernandes";
-const char* password = "w17l19g19";
+const char* ssid = "Evento";
+const char* password = "cesupa2024";
 
 void setup() {
 

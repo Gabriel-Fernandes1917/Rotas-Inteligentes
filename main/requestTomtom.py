@@ -5,7 +5,7 @@ api_key = 'jRJzo9EsGRhQol947cFzSrGNzIYPAsCH'
 
 caminhos = ["Pedro Alvares Cabral - Doca:",'-1.40932,-48.4489','-1.43663,-48.49174'], ["Duque de Caixias - Doca: ",'-1.40951,-48.46381','-1.44609,-48.48798'], ["Pedro Miranda - Doca: ",'-1.40951,-48.46381','-1.44357,-48.48765']
 
-def medir_rota(rota,partida, destino):
+def medir_rota(nomeDaRota,partida, destino):
 
     # Ponto de partida (latitude e longitude)
     start_point = partida
@@ -18,30 +18,26 @@ def medir_rota(rota,partida, destino):
 
     # Faça a solicitação HTTP GET
     response = requests.get(url)
-
+    varreturn = []
     # Verifique se a solicitação foi bem-sucedida
     if response.status_code == 200:
         # Processar os dados da resposta (em formato JSON)
         route_data = response.json()
-        # Aqui você pode extrair informações sobre a rota, como distância, tempo de viagem, etc.
+        # Aqui você pode extrair informações sobre a nomeDaRota, como distância, tempo de viagem, etc.
         # print(route_data)
         for i in route_data["routes"]:
-            print(f"""
-                    {rota} {int((i["summary"]["travelTimeInSeconds"])/60)} minutos
-                    """
-                    #distancia: {(i["summary"]["lengthInMeters"])/1000} KM,
-                    # atrasos devido a engarrafamentos: {i["summary"]["trafficDelayInSeconds"]} segundos,
-                    # Saida: {i["summary"]["departureTime"]},
-                    # chegada: {i["summary"]["arrivalTime"]}"
-                    
-            )
+            varreturn.append(f"""{nomeDaRota} {int((i["summary"]["travelTimeInSeconds"])/60)} minutos""")
     else:
         print('Erro ao fazer a solicitação:', response.status_code)
+    return varreturn
 
 def verritas():
-    for i in caminhos:
-        medir_rota(i[0],i[1],i[2])
+    x = []
+    for i in caminhos:       
+        x.append(medir_rota(i[0],i[1],i[2]))
 
+        #medir_rota(i[0],i[1],i[2])
+    return x
 verritas()
 
 #site das coordenadas: https://wego.here.com/discover/belem?map=-1.42841,-48.46095,15.74,omv

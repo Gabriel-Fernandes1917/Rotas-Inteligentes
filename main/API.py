@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-import main as verritas 
+from requestTomtom import verritas
 
 app = Flask(__name__)
 
