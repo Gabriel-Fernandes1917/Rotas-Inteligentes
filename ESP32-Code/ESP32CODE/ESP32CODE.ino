@@ -14,8 +14,8 @@
 #include <HTTPClient.h> // Biblioteca nativa do ESP32
 
 // Configurações da rede WiFi à se conectar
-const char* ssid = "Evento";
-const char* password = "cesupa2024";
+const char* ssid = "Fernandes";
+const char* password = "w17l19g19";
 
 void setup() {
 
@@ -41,7 +41,7 @@ void setup() {
   HTTPClient http; // o objeto da classe HTTPClient
 
   Serial.println("[HTTP] começar...");
-  http.begin("https://economia.awesomeapi.com.br/json/last/USD-BRL"); // configura o URL para fazer requisição no servidor
+  http.begin("http://192.168.0.14:5000/get_data"); // configura o URL para fazer requisição no servidor
 
   Serial.println("[HTTP] GET...");
   int httpCode = http.GET(); // inicia uma conexão e envia um cabeçalho HTTP para o
