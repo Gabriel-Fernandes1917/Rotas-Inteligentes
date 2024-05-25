@@ -1,35 +1,22 @@
-/******************************************************************************
-                    Cotação do Dólar em Tempo Real com ESP32
-                   Sketch Auxiliar: Exemplo de Requisição GET
 
-                          Criado em 30 de Maio de 2022
-                                por Michel Galvão
+#include <WiFi.h>       
+#include <HTTPClient.h> 
 
-  Eletrogate - Loja de Arduino \\ Robótica \\ Automação \\ Apostilas \\ Kits
-                            https://www.eletrogate.com/
-******************************************************************************/
-
-// Inclusão da(s) biblioteca(s)
-#include <WiFi.h>       // Biblioteca nativa do ESP32
-#include <HTTPClient.h> // Biblioteca nativa do ESP32
-
-// Configurações da rede WiFi à se conectar
+// config do WiFi
 const char* ssid = "Fernandes";
 const char* password = "w17l19g19";
 
 void setup() {
 
-  // Inicia Serial
   Serial.begin(115200);
   Serial.println();
   delay(1000);
 
-  WiFi.disconnect(); // Desconecta do WiFI se já houver alguma conexão
-  WiFi.mode(WIFI_STA); // Configura o ESP32 para o modo de conexão WiFi Estação
+  WiFi.disconnect(); 
+  WiFi.mode(WIFI_STA);
   Serial.println("[SETUP] Tentando conexão com o WiFi...");
   WiFi.begin(ssid, password); // Conecta-se à rede
-  if (WiFi.waitForConnectResult() == WL_CONNECTED) // aguarda até que o módulo se
-    //                                                  conecte ao ponto de acesso
+  if (WiFi.waitForConnectResult() == WL_CONNECTED) 
   {
     Serial.println("[SETUP] WiFi iniciado com sucesso!");
   } else
@@ -38,18 +25,16 @@ void setup() {
     ESP.restart();
   }
 
-  HTTPClient http; // o objeto da classe HTTPClient
+  HTTPClient http; 
 
   Serial.println("[HTTP] começar...");
-  http.begin("http://192.168.0.14:5000/get_data"); // configura o URL para fazer requisição no servidor
+  http.begin("http://192.168.0.14:5000/get_data"); //URL para fazer requisição
 
   Serial.println("[HTTP] GET...");
-  int httpCode = http.GET(); // inicia uma conexão e envia um cabeçalho HTTP para o
-  //                              URL do servidor configurado
+  int httpCode = http.GET(); // inicia uma conexão e envia um cabeçalho HTTP para o URL do servidor configurado
   Serial.print("[HTTP] GET... código: ");
   Serial.println(httpCode);
-  if (httpCode == HTTP_CODE_OK) // se o cabeçalho HTTP foi enviado e o cabeçalho de
-    //                               resposta do servidor foi tratado, ...
+  if (httpCode == HTTP_CODE_OK) 
   {
     Serial.println("[HTTP] GET... OK! Resposta: ");
 

@@ -1,6 +1,5 @@
 import requests
 
-# Substitua 'YOUR_API_KEY' pela sua chave de API da TomTom
 api_key = 'jRJzo9EsGRhQol947cFzSrGNzIYPAsCH'
 
 caminhos = ["Pedro Alvares Cabral - Doca:",'-1.40932,-48.4489','-1.43663,-48.49174'], ["Duque de Caixias - Doca: ",'-1.40951,-48.46381','-1.44609,-48.48798'], ["Pedro Miranda - Doca: ",'-1.40951,-48.46381','-1.44357,-48.48765']
@@ -13,17 +12,16 @@ def medir_rota(nomeDaRota,partida, destino):
     # Ponto de chegada (latitude e longitude)
     end_point = destino
 
-    # Construa a URL da solicitação de roteamento
     url = f'https://api.tomtom.com/routing/1/calculateRoute/{start_point}:{end_point}/json?key={api_key}&traffic=true'
 
-    # Faça a solicitação HTTP GET
+    # solicitação HTTP GET
     response = requests.get(url)
     varreturn = []
-    # Verifique se a solicitação foi bem-sucedida
+    
     if response.status_code == 200:
-        # Processar os dados da resposta (em formato JSON)
+       
         route_data = response.json()
-        # Aqui você pode extrair informações sobre a nomeDaRota, como distância, tempo de viagem, etc.
+        
         # print(route_data)
         for i in route_data["routes"]:
             varreturn.append(f"""{nomeDaRota} {int((i["summary"]["travelTimeInSeconds"])/60)} minutos""")
@@ -31,13 +29,13 @@ def medir_rota(nomeDaRota,partida, destino):
         print('Erro ao fazer a solicitação:', response.status_code)
     return varreturn
 
-def verritas():
+def verrotas():
     x = []
     for i in caminhos:       
         x.append(medir_rota(i[0],i[1],i[2]))
 
         #medir_rota(i[0],i[1],i[2])
     return x
-verritas()
+verrotas()
 
 #site das coordenadas: https://wego.here.com/discover/belem?map=-1.42841,-48.46095,15.74,omv
